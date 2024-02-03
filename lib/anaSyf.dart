@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(builder: (context) => MarketPage()));},
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/market.jpg',width: 160,height: 160,),
+                    child: Image.asset('assets/images/market.jpg',width: 160,height: 159,),
                   ),
                 ),
                 GestureDetector(
