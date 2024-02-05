@@ -9,7 +9,7 @@ class MyTextField extends StatelessWidget {
   const MyTextField({
     super.key,
     required this.labeltext,
-   this.controller,
+    this.controller,
     this.isPassword = false,
     this.obscureText = false,
     this.prefixIcon,
@@ -23,16 +23,12 @@ class MyTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
           prefixIcon: prefixIcon,
-          border:  OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          focusedBorder: const OutlineInputBorder(
+          border: UnderlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
             borderSide: BorderSide(color: Colors.white),
           ),
           labelText: labeltext,
-          labelStyle: TextStyle(
-            color: Colors.white,
-          )),
-);
-}
+          labelStyle: TextStyle(color: Colors.grey[800], fontSize: 15)),
+    );
+  }
 }

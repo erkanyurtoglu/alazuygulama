@@ -1,8 +1,7 @@
-import 'package:alazuygulama/manav.dart';
-import 'package:alazuygulama/market.dart';
+import 'package:alazuygulama/bottomnav.dart';
 import 'package:alazuygulama/my_text_field.dart';
-import 'package:alazuygulama/profilSyf.dart';
-import 'package:alazuygulama/yemek.dart';
+import 'package:alazuygulama/urunDty.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -14,98 +13,218 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const LatLng ilkkonum = LatLng(37.7385183, 29.0923628);
+  bool icecream = false, pizza = false, salad = false, burger = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red[900],
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 5,
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: TextField(
+            decoration: InputDecoration(
+              hintText: 'Ürün ara',
+              prefixIcon: Icon(
+                Icons.search_outlined,
               ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: MyTextField(labeltext: "Depremzede İhtiyacı Ara...", prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.grey[900],
-                    ),),
+            ),
+          )),
+      body: Container(
+        margin: EdgeInsets.only(top: 30, left: 20, right: 10),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 250, bottom: 10),
+              child: Text(
+                "Kategoriler:",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-                  const SizedBox(
-                height: 10,
-              ),
-                  Container(height: 250,width: 350, child: GoogleMap(initialCameraPosition: CameraPosition(target: ilkkonum,zoom: 16),
-                  markers: {Marker(markerId: MarkerId("teknokent"),position: ilkkonum)},)),
-                  const SizedBox(
-                height: 10,
-              ),
-              Container(
-                decoration:  BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  color: Colors.white
-                ),
-                child: Column(
-                  children: [
-                    Container(
-                      color: Colors.white,
-                    ),
-                    const 
-                    SizedBox(
-                      height: 20,
-                    ),
-                  Container(height:0,color: Colors.white,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                   GestureDetector(
-                  onTap: () {Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ManavPage()));},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/hastane.jpg',width: 160,height: 160,),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => YemekPage()));},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/kangrup.jpg',width: 160,height: 160,),
-                  ),
-                ),
-            ],),
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                   GestureDetector(
-                  onTap: () {Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MarketPage()));},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/market.jpg',width: 160,height: 159,),
+                GestureDetector(
+                  onTap: () {
+                    icecream = true;
+                    pizza = false;
+                    salad = false;
+                    burger = false;
+                    setState(() {});
+                  },
+                  child: Material(
+                    elevation: 5,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: icecream ? Colors.black : Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          "assets/images/ice-cream.png",
+                          height: 40,
+                          width: 40,
+                          fit: BoxFit.cover,
+                          color: icecream ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ProfilPage()));},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/logo.jpg',width: 160,height: 160,),
+                  onTap: () {
+                    icecream = false;
+                    pizza = true;
+                    salad = false;
+                    burger = false;
+                    setState(() {});
+                  },
+                  child: Material(
+                    elevation: 5,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: pizza ? Colors.black : Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          "assets/images/pizza.png",
+                          height: 40,
+                          width: 40,
+                          fit: BoxFit.cover,
+                          color: pizza ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-            ],) 
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    icecream = false;
+                    pizza = false;
+                    salad = true;
+                    burger = false;
+                    setState(() {});
+                  },
+                  child: Material(
+                    elevation: 5,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: salad ? Colors.black : Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          "assets/images/salad.png",
+                          height: 40,
+                          width: 40,
+                          fit: BoxFit.cover,
+                          color: salad ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    icecream = false;
+                    pizza = false;
+                    salad = false;
+                    burger = true;
+                    setState(() {});
+                  },
+                  child: Material(
+                    elevation: 5,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: burger ? Colors.black : Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          "assets/images/burger.png",
+                          height: 40,
+                          width: 40,
+                          fit: BoxFit.cover,
+                          color: burger ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 20, bottom: 20),
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  padding: EdgeInsets.all(3),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          "assets/images/salad2.png",
+                          height: 120,
+                          width: 120,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Details()));
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Tavuklu Salata",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Ballı keçi peyniri",
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "100 TL",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-                 
-            ],
-          ),
-        )
+            ),
+          ],
+        ),
       ),
     );
   }
