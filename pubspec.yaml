@@ -37,11 +37,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_maps_flutter: ^2.5.0
   curved_navigation_bar: ^1.0.3
-  image_picker: ^1.0.7
   firebase_storage: ^11.6.4
-  firebase_core: ^2.25.3
-  firebase_auth: ^4.17.3
   cloud_firestore: ^4.15.3
+  image_picker: ^1.0.7
+  random_string: ^2.3.1
+  fpdart: ^1.1.0
+  firebase_core: ^2.25.4
+  flutter_riverpod: ^2.4.10
+  firebase_auth: ^4.17.4
+  provider: ^6.1.1
+
 
 dev_dependencies:
   flutter_test:

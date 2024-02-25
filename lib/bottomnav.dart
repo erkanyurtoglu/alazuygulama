@@ -1,4 +1,4 @@
-import 'package:alazuygulama/anaSyf.dart';
+import 'package:alazuygulama/home_page.dart';
 import 'package:alazuygulama/profil.dart';
 import 'package:alazuygulama/sepet.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -34,9 +34,9 @@ class _BottomNAvigatorBarState extends State<BottomPage> {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
           height: 55,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           color: Colors.red,
-          animationDuration: Duration(milliseconds: 500),
+          animationDuration: Duration(milliseconds: 400),
           onTap: (int index) {
             setState(() {
               currentTabIndex = index;

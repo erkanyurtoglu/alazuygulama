@@ -1,4 +1,4 @@
-import 'package:alazuygulama/anaSyf.dart';
+import 'package:alazuygulama/admin_page.dart';
 import 'package:alazuygulama/bottomnav.dart';
 import 'package:alazuygulama/my_text_field.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,12 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 60),
-            child: Image.asset("assets/images/logo1.png"),
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AdminPanel()));
+                },
+                child: Image.asset("assets/images/logo1.png")),
           ),
           SizedBox(
             height: 30,
@@ -35,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               borderRadius: BorderRadius.circular(10),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context).size.height / 2.3,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -85,6 +90,13 @@ class _LoginPageState extends State<LoginPage> {
                 print("Error ${error.toString()}");
               });*/
                         }),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Hesabın Yok Mu?'),
+                        TextButton(onPressed: () {}, child: Text('Kayıt Ol')),
+                      ],
+                    )
                   ],
                 ),
               ),
